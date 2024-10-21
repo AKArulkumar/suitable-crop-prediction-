@@ -1,0 +1,11 @@
+District,Soil Type,Crop,Ideal Season,Average Temperature (°C),Average Rainfall (mm),Suitability
+Chennai,Alluvial,Rice,Winter,28,50,1
+Coimbatore,Red Soil,Sugarcane,Summer,32,100,1
+Madurai,Black Soil,Cotton,Monsoon,27,250,1
+Salem,Alluvial,Groundnut,Summer,30,80,1
+Tiruchirappalli,Red Soil,Rice,Winter,26,40,1
+Thanjavur,Black Soil,Paddy,Monsoon,24,200,1
+Cuddalore,Alluvial,Rice,Summer,30,70,1
+Dindigul,Red Soil,Groundnut,Monsoon,28,180,1
+Kanyakumari,Laterite,Rubber,Winter,29,300,1
+Virudhunagar,Sandy,Cotton,Summer,33,150,1

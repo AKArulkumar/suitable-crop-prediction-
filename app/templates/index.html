@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Suitability Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #007BFF;
+        }
+
+        .navbar a {
+            color: white !important;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Background image section */
+        .container-fluid {
+            background-image: url('{{ url_for('static', filename='images/background.jpg') }}');
+            background-size: cover;
+            background-position: center; /* Ensures the image is centered */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Crop Prediction</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Prediction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Background Image -->
+    <div class="container-fluid">
+        <div class="form-container">
+            <h1 class="text-center">Crop Suitability Prediction</h1>
+            <form id="predictionForm" action="/predict" method="POST">
+                <div class="form-group">
+                    <label for="district">District:</label>
+                    <select class="form-control" id="district" name="district">
+                        <option value="Chennai">Chennai</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Madurai">Madurai</option>
+                        <option value="Tiruchirappalli">Tiruchirappalli</option>
+                        <option value="Erode">Erode</option>
+                        <option value="Thanjavur">Thanjavur</option>
+                        <option value="Salem">Salem</option>
+                        <option value="Kanyakumari">Kanyakumari</option>
+                        <option value="Virudhunagar">Virudhunagar</option>
+                        <option value="Dindigul">Dindigul</option>
+                        <option value="Thiruvallur">Thiruvallur</option>
+                        <option value="Namakkal">Namakkal</option>
+                        <option value="Ramanathapuram">Ramanathapuram</option>
+                        <option value="Tirunelveli">Tirunelveli</option>
+                        <option value="Tiruvannamalai">Tiruvannamalai</option>
+                        <option value="Vellore">Vellore</option>
+                        <option value="Pudukkottai">Pudukkottai</option>
+                        <option value="Sivaganga">Sivaganga</option>
+                        <option value="Kanchipuram">Kanchipuram</option>
+                        <option value="Kallakurichi">Kallakurichi</option>
+                        <option value="Ariyalur">Ariyalur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="season">Season:</label>
+                    <select class="form-control" id="season" name="season">
+                        <option value="Winter">Winter</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Monsoon">Monsoon</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="crop">Crop:</label>
+                    <select class="form-control" id="crop" name="crop">
+                        <option value="Rice">Rice</option>
+                        <option value="Sugarcane">Sugarcane</option>
+                        <option value="Cotton">Cotton</option>
+                        <option value="Groundnut">Groundnut</option>
+                        <option value="Paddy">Paddy</option>
+                        <option value="Rubber">Rubber</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="soil">Soil Type:</label>
+                    <select class="form-control" id="soil" name="soil">
+                        <option value="Alluvial">Alluvial</option>
+                        <option value="Red Soil">Red Soil</option>
+                        <option value="Black Soil">Black Soil</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Predict</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
